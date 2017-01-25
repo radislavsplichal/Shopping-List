@@ -14,9 +14,9 @@ include 'databaseConnection.php';
             <h1>Nákupní Seznam</h1> 
             <p>Do formuláře zapiš věci, které se mají nakoupit. Nezapomeň to uložit.</p>
             
-            <textarea name="text" class="form-control" rows="3"></textarea>
+            <textarea name="text" class="form-control" rows="3" required ></textarea>
             <br>
-            
+            Důležité: <input type="checkbox" name="important" value="true"> 
             <div align="right">
                 <button type="reset" class="btn btn-danger">Smazat</button>
             <button type="submit" class="btn btn-primary">Uložit</button>
@@ -28,13 +28,20 @@ include 'databaseConnection.php';
          
          
      <?php
-    $sql = "SELECT itemID, itemText, time, date, active FROM shoppinglist";
+    $sql = "SELECT itemID, itemText, time, date, active, important FROM shoppinglist";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo '<div class="panel panel-default">
+        if ($row["important"] == true){
+            $important = "panel-primary";
+        }
+        else {
+            $important = "panel-default";
+        }
+                
+        echo '<div class="panel '.$important.'">
   <div class="panel-heading">
     <h3 class="panel-title">Položka č.'.$row["itemID"]." | ".$row["date"]. " " .$row["time"].'</h3>
   </div>

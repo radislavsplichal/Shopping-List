@@ -5,10 +5,10 @@ include 'databaseConnection.php';
      public $date;
      public $state = true;
      
-     function saveItem($conn, $text) {
+     function saveItem($conn, $text, $important) {
          $date = date('d.m.Y');
          echo $date;
-         $sql = "INSERT INTO shoppinglist (itemText, time, date, active) VALUES ('$text', NOW(), '$date', TRUE)";
+         $sql = "INSERT INTO shoppinglist (itemText, time, date, active, important) VALUES ('$text', NOW(), '$date', TRUE, '$important')";
          
          if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

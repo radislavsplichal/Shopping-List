@@ -3,10 +3,18 @@ include 'databaseConnection.php';
 include 'item.php';
 
 $text= $_POST["text"];
+
+if (isset($_POST["important"]) && $_POST["important"] == true ) {
+    $important = true;
+    
+}  else {
+    $important = false;
+}
+    
 //echo $text;
 
 $itemN = new Item();
-$itemN->saveItem($conn,$text);
+$itemN->saveItem($conn,$text,$important);
 
 header("Location:"."index.php");
 exit();
