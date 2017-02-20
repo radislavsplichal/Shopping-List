@@ -5,6 +5,7 @@
         <group>
             <file>file:/Applications/XAMPP/htdocs/website/databaseConnection.php</file>
             <file>file:/Applications/XAMPP/htdocs/website/index.php</file>
+            <file>file:/Applications/XAMPP/htdocs/website/dynamicForm.js</file>
             <file>file:/Applications/XAMPP/htdocs/website/item.php</file>
             <file>file:/Applications/XAMPP/htdocs/website/saveItem.php</file>
             <file>file:/Applications/XAMPP/htdocs/website/deleteItem.php</file>

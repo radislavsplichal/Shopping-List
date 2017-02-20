@@ -14,13 +14,14 @@ include 'databaseConnection.php';
             <h1>Nákupní Seznam</h1> 
             <p>Do formuláře zapiš věci, které se mají nakoupit. Nezapomeň to uložit.</p>
         </div>
-        
+        <script src="dynamicForm.js" language="Javascript" type="text/javascript"></script>
         <form class="form-horizontal" action="saveItem.php" method="post">
             
             <div class="form-group">
                 <label for="nSeznamu">Název seznamu: </label>
                 <input class="form-control" id="nSeznamu" name="listName" required>
             </div>
+            <div id="dynamicForm">
             <div class="row">
                  
                 <div class="form-group col-sm-6">
@@ -38,10 +39,10 @@ include 'databaseConnection.php';
                     <input class="form-control" id="cenaKus" type="number" name="unitPrice">
                 </div>  
                 
-                <div class="glyphicon glyphicon-plus col-sm-1"></div>
+                <div class="glyphicon glyphicon-plus col-sm-1" onClick="addInput('dynamicForm')"></div>
 
             </div>
-             
+            </div> 
             
             <div class="form-group">
                 <label for="note">Poznámky: </label>
