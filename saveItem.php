@@ -2,7 +2,18 @@
 include 'databaseConnection.php';
 include 'item.php';
 
-$text= $_POST["text"];
+$listName = $_POST["listName"];
+
+//print_r($_POST["itemName"]);
+$items = $_POST["itemName"];
+$quantity = $_POST["quantity"];
+
+//print_r($quantity);
+$unitPrice = $_POST["unitPrice"];
+
+//print_r($unitPrice);
+
+
 
 if (isset($_POST["important"]) && $_POST["important"] == true ) {
     $important = true;
@@ -14,7 +25,7 @@ if (isset($_POST["important"]) && $_POST["important"] == true ) {
 //echo $text;
 
 $itemN = new Item();
-$itemN->saveItem($conn,$text,$important);
+$itemN->saveItem($conn,$listName,$items,$quantity,$unitPrice,$important);
 
 header("Location:"."index.php");
 exit();

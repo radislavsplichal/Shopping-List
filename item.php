@@ -5,13 +5,35 @@ include 'databaseConnection.php';
      public $date;
      public $state = true;
      
-     function saveItem($conn, $text, $important) {
+     function saveItem($conn,$listName,$items,$quantity,$unitPrice,$important) {
          $date = date('d.m.Y');
-         echo $date;
-         $sql = "INSERT INTO shoppinglist (itemText, time, date, active, important) VALUES ('$text', NOW(), '$date', TRUE, '$important')";
-         
+         //echo $date;
+         $sql = 
+         "
+            INSERT INTO shoppinglist (listName, time, date, active, important) 
+            VALUES ('$listName', NOW(), '$date', TRUE, '$important');
+
+
+         ";
+
+       
+echo sizeof($items);
+
          if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+                for ($i=0; $i<sizeof($items); $i++) {
+                    echo "Hola";
+                    $sql= "INSERT INTO items (item, quantity, unitPrice, listID) 
+                    VALUES ('$items[$i]','$quantity[$i]','$unitPrice[$i]',(SELECT MAX(listID) FROM shoppinglist));";
+
+                    if ($conn->query($sql) === TRUE){
+                        echo "Kunda sem Kunda tam!";    
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
+
+    }
+
+
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
