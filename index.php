@@ -65,34 +65,85 @@ include 'databaseConnection.php';
          
          
      <?php
-    $sql = "SELECT itemID, itemText, time, date, active, important FROM shoppinglist";
-$result = $conn->query($sql);
+     $sameID = 0;
+
+  $sql = "SELECT * FROM shoppinglist,items
+    WHERE shoppinglist.listID = items.listID
+    ORDER BY shoppinglist.listID";
+    
+    $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
+        
         if ($row["important"] == true){
             $important = "panel-primary";
         }
         else {
             $important = "panel-default";
         }
-                
-        echo '<div class="panel '.$important.'">
-  <div class="panel-heading">
-    <h3 class="panel-title">Položka č.'.$row["itemID"]." | ".$row["date"]. " " .$row["time"].'</h3>
-  </div>
-  <div class="panel-body">'
-    .$row["itemText"].
-                
-        '<form action="deleteItem.php" method="post" >'
-                . '<input type="hidden" name="itemID" value="'.$row["itemID"].'"></input>'
-                
-                . '<div align="right"><button type="submit" class="btn btn-danger">Smazat!</button></div>'.
-  '</form></div>
-</div>';}
+        //echo $row["listID"];
+        if ($sameID == 0 or $sameID !== $row["listID"] ){     
+        
+            if ($sameID != 0){
+                echo "</table>
+                </div>";
+            }
+
+
+        echo 
+
+        '
+        <div class="panel '.$important.'">
+        <div class="panel-heading">
+        <h3 class="panel-title">Seznam č.'.$row["listID"]." ".$row["date"]." "  .$row["time"]." ".$row["listName"].'</h3>
+        </div>
+        <table class="table">
+  <tr>
+    <th class="tg-yw4l">Polozka</th>
+    <th class="tg-yw4l">Množství</th>
+    <th class="tg-yw4l">cenaKus</th>
+  </tr>
+   <tr>
+    <td class="tg-yw4l">'.$row["item"].'</td>
+    <td class="tg-yw4l">'.$row["quantity"].'</td>
+    <td class="tg-yw4l">'.$row["unitPrice"].'</td>
+  </tr>
+
+        ';
+
+        
+    
+        } else { 
+   
+        echo '              
+   <tr>
+    <td class="tg-yw4l">'.$row["item"].'</td>
+    <td class="tg-yw4l">'.$row["quantity"].'</td>
+    <td class="tg-yw4l">'.$row["unitPrice"].'</td>
+  </tr>
+
+
+
+                <form action="deleteItem.php" method="post" >
+                <input type="hidden" name="itemID" value="'.$row["itemID"].'"></input>
+                </form>
+            
+        ';
+
+
+    }
+
+    $sameID = $row["listID"];
+}
+
+
+
+    
 } else {
     echo "0 results";
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 $conn->close();
      ?>
