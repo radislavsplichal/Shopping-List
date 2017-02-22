@@ -2,7 +2,47 @@
 include 'databaseConnection.php';
 
 ?>
+<!-- top menu-->
 
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active">
+        <li><a href="#">Active Lists</a></li>
+        <li><a href="#">Completed Lists</a></li>
+        <li><a href="#">Create a List</a></li>
+        
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+
+<!-- // end -->
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -97,18 +137,23 @@ if ($result->num_rows > 0) {
         '
         <div class="panel '.$important.'">
         <div class="panel-heading">
-        <h3 class="panel-title">Seznam č.'.$row["listID"]." ".$row["date"]." "  .$row["time"]." ".$row["listName"].'</h3>
+        <h3 class="panel-title col-sm-10">Seznam č.'.$row["listID"]." ".$row["date"]." "  .$row["time"]." ".$row["listName"].'</h3>
+        <div class="glyphicon glyphicon-pencil col-sm-1" </div>
+        <div class="glyphicon glyphicon-remove col-sm-1"></div>
+        <br>
         </div>
+
         <table class="table">
   <tr>
-    <th class="tg-yw4l">Polozka</th>
+    <th class="tg-yw4l">Položka</th>
     <th class="tg-yw4l">Množství</th>
-    <th class="tg-yw4l">cenaKus</th>
+    <th class="tg-yw4l">Cena za kus</th>
   </tr>
    <tr>
     <td class="tg-yw4l">'.$row["item"].'</td>
     <td class="tg-yw4l">'.$row["quantity"].'</td>
     <td class="tg-yw4l">'.$row["unitPrice"].'</td>
+    <td ><div class="glyphicon glyphicon-remove col-sm-1"></div></td>
   </tr>
 
         ';
@@ -122,6 +167,7 @@ if ($result->num_rows > 0) {
     <td class="tg-yw4l">'.$row["item"].'</td>
     <td class="tg-yw4l">'.$row["quantity"].'</td>
     <td class="tg-yw4l">'.$row["unitPrice"].'</td>
+    <td ><div class="glyphicon glyphicon-remove col-sm-1"></div></td>
   </tr>
 
 
@@ -152,7 +198,7 @@ $conn->close();
      </p>
         
 
-    <div class="row col-sm-3 col-xs-0"></div>
+    <div class="row col-sm-3 col-xs-0" ></div>
 
 </html>
 
