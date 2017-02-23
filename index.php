@@ -59,7 +59,7 @@ include 'databaseConnection.php';
             
             <div class="form-group">
                 <label for="nSeznamu">Název seznamu: </label>
-                <input class="form-control" id="nSeznam" name="listName" required>
+                <input class="form-control" id="nSeznam" name="listName" maxlength="30" required>
             </div>
             <div id="dynamicForm">
             <div class="row">
@@ -71,12 +71,12 @@ include 'databaseConnection.php';
 
                 <div class="form-group col-sm-3">
                     <label for="pocetKus">Počet kusů:</label>
-                    <input class="form-control" id="pocetKus" type="number" name="quantity[]" value="null">
+                    <input class="form-control" id="pocetKus" type="number" maxlength="5" min="0" name="quantity[]" value="1">
                 </div>
 
                 <div class="form-group col-sm-3">
                     <label for="cenaKus">Cena za kus:</label>
-                    <input class="form-control" id="cenaKus" type="number" name="unitPrice[]" value="null">
+                    <input class="form-control" id="cenaKus" type="number" min="0" step="0.01" name="unitPrice[]" maxlength="10" value="0">
                 </div>  
                 
                 <div class="glyphicon glyphicon-plus col-sm-1" onClick="addInput('dynamicForm')"></div>
@@ -137,8 +137,8 @@ if ($result->num_rows > 0) {
         '
         <div class="panel '.$important.'">
         <div class="panel-heading">
-        <h3 class="panel-title col-sm-10">Seznam č.'.$row["listID"]." ".$row["date"]." "  .$row["time"]." ".$row["listName"].'</h3>
-        <div class="glyphicon glyphicon-pencil col-sm-1" </div>
+        <h3 class="panel-title col-sm-10">'.$row["date"]." "  .$row["time"]." ".$row["listName"].'</h3>
+        <div class="glyphicon glyphicon-pencil col-sm-1"> </div>
         <div class="glyphicon glyphicon-remove col-sm-1"></div>
         <br>
         </div>
@@ -153,7 +153,16 @@ if ($result->num_rows > 0) {
     <td class="tg-yw4l">'.$row["item"].'</td>
     <td class="tg-yw4l">'.$row["quantity"].'</td>
     <td class="tg-yw4l">'.$row["unitPrice"].'</td>
-    <td ><div class="glyphicon glyphicon-remove col-sm-1"></div></td>
+    <td >
+
+        <form action="deleteItem.php" method="post" >
+            <input type="hidden" name="itemID" value="'.$row["itemID"].'"></input>
+            <div onClick="this.parentNode.submit();" type="submit" class="glyphicon glyphicon-remove col-sm-1"></div>
+        </form>
+
+
+
+    </td>
   </tr>
 
         ';
@@ -167,14 +176,21 @@ if ($result->num_rows > 0) {
     <td class="tg-yw4l">'.$row["item"].'</td>
     <td class="tg-yw4l">'.$row["quantity"].'</td>
     <td class="tg-yw4l">'.$row["unitPrice"].'</td>
-    <td ><div class="glyphicon glyphicon-remove col-sm-1"></div></td>
+    <td >
+
+        <form action="deleteItem.php" method="post" >
+            <input type="hidden" name="itemID" value="'.$row["itemID"].'"></input>
+            <div onClick="this.parentNode.submit();" type="submit" class="glyphicon glyphicon-remove col-sm-1"></div>
+        </form>
+
+
+
+    </td>
   </tr>
 
 
 
-                <form action="deleteItem.php" method="post" >
-                <input type="hidden" name="itemID" value="'.$row["itemID"].'"></input>
-                </form>
+                
             
         ';
 

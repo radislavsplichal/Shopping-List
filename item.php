@@ -41,10 +41,10 @@ echo sizeof($items);
      }
  
  function deleteItem($conn, $itemID) {
-         $sql = "DELETE FROM shoppinglist WHERE itemID='$itemID'";
+         $sql = "DELETE FROM items WHERE itemID='$itemID'";
          
          if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "Record deleted successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
