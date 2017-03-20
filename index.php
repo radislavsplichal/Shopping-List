@@ -66,12 +66,12 @@ include 'databaseConnection.php';
                  
                 <div class="form-group col-sm-6">
                     <label for="txtPolozky">Položky: </label>
-                    <input class="form-control" id="txtPolozky" type="text" name="itemName[]">
+                    <input class="form-control" id="txtPolozky" type="text" name="itemName[]" required>
                 </div>
 
                 <div class="form-group col-sm-3">
                     <label for="pocetKus">Počet kusů:</label>
-                    <input class="form-control" id="pocetKus" type="number" maxlength="5" min="0" name="quantity[]" value="1">
+                    <input class="form-control" id="pocetKus" type="number" maxlength="5" min="0" name="quantity[]" value="1" required>
                 </div>
 
                 <div class="form-group col-sm-3">

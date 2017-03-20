@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost";
+$servername = "192.168.0.105";
 $username = "shopper";
-$password = "RwEPqQcnaPMeTnbx";
+$password = "MJ22O0gfDPBPa1KA";
 $dbname = "shoppinglistDB";
 
 // Create connection

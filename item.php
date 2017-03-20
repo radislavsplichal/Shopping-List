@@ -16,7 +16,7 @@ include 'databaseConnection.php';
 
          ";
 
-       
+       //
 echo sizeof($items);
 
          if ($conn->query($sql) === TRUE) {
